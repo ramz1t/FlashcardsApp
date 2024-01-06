@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FlashcardsAppApp: App {
@@ -13,5 +14,6 @@ struct FlashcardsAppApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Card.self])
     }
 }
