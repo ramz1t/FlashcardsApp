@@ -10,6 +10,7 @@ import SwiftData
 
 struct EditCardView: View {
     @Bindable var card: Card
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -27,6 +28,11 @@ struct EditCardView: View {
             }
             .navigationTitle("Edit Card")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button("Done") {
+                    dismiss()
+                }
+            }
         }
     }
 }

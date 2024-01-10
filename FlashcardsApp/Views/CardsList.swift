@@ -12,15 +12,18 @@ struct CardsList: View {
     @Environment(\.modelContext) var modelContext
     @AppStorage("showTranslations") private var showingTranslations = false
     @Binding private var searchIsActive: Bool
+    @State private var editMenuOpen = false
+    private var selectedCard: Card = Card(originalText: "", translatedText: "")
     
     @Query var cards: [Card]
     
     init(sort: SortDescriptor<Card>, search: String, searchIsActive: Binding<Bool>) {
+        var clearSearch = search.trimmingCharacters(in: .whitespacesAndNewlines)
         _cards = Query(filter: #Predicate<Card> {
-            if search.isEmpty {
+            if clearSearch.isEmpty {
                 return true
             } else {
-                return $0.originalText.localizedStandardContains(search) || $0.translatedText.localizedStandardContains(search)
+                return $0.originalText.localizedStandardContains(clearSearch) || $0.translatedText.localizedStandardContains(clearSearch)
             }
         }, sort: [sort])
         _searchIsActive = searchIsActive
@@ -50,8 +53,8 @@ struct CardsList: View {
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
-                            NavigationLink {
-                                EditCardView(card: card)
+                            Button {
+                                editMenuOpen = true
                             } label: {
                                 Label("Edit", systemImage: "pencil")
                             }
@@ -73,15 +76,23 @@ struct CardsList: View {
                               description: searchIsActive ? nil : "Add Cards to begin practicing every day")
             }
         }
+        .sheet(isPresented: $editMenuOpen) {
+            EditCardView(card: selectedCard)
+                .presentationDetents([.medium])
+        }
     }
 }
 
 #Preview {
     @State var search = ""
     @State var active = false
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Card.self, configurations: config)
+    
     return NavigationStack {
         CardsList(sort: SortDescriptor(\Card.originalText), search: search, searchIsActive: $active)
             .searchable(text: $search,
                         placement: .navigationBarDrawer(displayMode: .always))
+            .modelContainer(container)
     }
 }

@@ -18,7 +18,6 @@ struct ContentView: View {
         NavigationStack {
             CardsList(sort: order, search: search, searchIsActive: $searchIsActive)
                 .navigationTitle("Flashcards")
-                .navigationBarTitleDisplayMode(.inline)
                 .searchable(text: $search,
                             isPresented: $searchIsActive, 
                             placement: .navigationBarDrawer(displayMode: .always)

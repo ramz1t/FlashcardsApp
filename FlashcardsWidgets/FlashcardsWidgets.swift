@@ -87,13 +87,13 @@ struct FlashcardsWidgets: Widget {
 }
 
 extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
+    fileprivate static var start: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
         intent.favoriteEmoji = "😀"
         return intent
     }
     
-    fileprivate static var starEyes: ConfigurationAppIntent {
+    fileprivate static var end: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
         intent.favoriteEmoji = "🤩"
         return intent
@@ -103,6 +103,6 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     FlashcardsWidgets()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    SimpleEntry(date: .now, configuration: .start)
+    SimpleEntry(date: .now, configuration: .end)
 }
