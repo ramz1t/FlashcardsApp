@@ -82,7 +82,6 @@ struct FlashcardsWidgets: Widget {
         }
         .configurationDisplayName("Practice Quiz")
         .description("Chooze the correct option. Counter resets every midnight")
-        .supportedFamilies([.systemSmall])
     }
 }
 

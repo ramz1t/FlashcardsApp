@@ -12,13 +12,12 @@ struct CardsList: View {
     @Environment(\.modelContext) var modelContext
     @AppStorage("showTranslations") private var showingTranslations = false
     @Binding private var searchIsActive: Bool
-    @State private var editMenuOpen = false
-    private var selectedCard: Card = Card(originalText: "", translatedText: "")
+    var search = ""
     
     @Query var cards: [Card]
     
     init(sort: SortDescriptor<Card>, search: String, searchIsActive: Binding<Bool>) {
-        var clearSearch = search.trimmingCharacters(in: .whitespacesAndNewlines)
+        let clearSearch = search.trimmingCharacters(in: .whitespacesAndNewlines)
         _cards = Query(filter: #Predicate<Card> {
             if clearSearch.isEmpty {
                 return true
@@ -27,11 +26,12 @@ struct CardsList: View {
             }
         }, sort: [sort])
         _searchIsActive = searchIsActive
+        self.search = search
     }
     
     var body: some View {
         List {
-            if cards.count > 0 {
+            if !cards.isEmpty {
                 Section {
                     Button {
                         showingTranslations.toggle()
@@ -39,27 +39,7 @@ struct CardsList: View {
                         Label(showingTranslations ? "Hide translations" : "Show translations", systemImage: showingTranslations ? "eye" : "eye.slash")
                     }
                     ForEach(cards) { card in
-                        VStack(alignment: .leading) {
-                            Text(card.originalText)
-                            if showingTranslations {
-                                Text(card.translatedText)
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
-                        .swipeActions {
-                            Button(role: .destructive) {
-                                modelContext.delete(card)
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                            Button {
-                                editMenuOpen = true
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            .tint(.blue)
-                        }
+                        CardListCell(card: card, showTranslation: $showingTranslations)
                     }
                 } header: {
                     Text(cards.count == 1 ? "1 card" : "\(cards.count) cards")
@@ -68,17 +48,15 @@ struct CardsList: View {
                 }
             }
         }
-        .scrollDisabled(cards.count == 0)
+        .scrollDisabled(cards.isEmpty)
         .overlay {
             if cards.count == 0 {
-                NoContentView(icon: "doc.text.magnifyingglass",
-                              title: "No Cards Found",
-                              description: searchIsActive ? nil : "Add Cards to begin practicing every day")
+                if searchIsActive {
+                    ContentUnavailableView.search(text: search)
+                } else {
+                    ContentUnavailableView("Wordlist Is Empty", systemImage: "doc.text.magnifyingglass", description: Text("Add Cards to begin practicing every day"))
+                }
             }
-        }
-        .sheet(isPresented: $editMenuOpen) {
-            EditCardView(card: selectedCard)
-                .presentationDetents([.medium])
         }
     }
 }

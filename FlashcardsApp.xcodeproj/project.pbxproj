@@ -12,7 +12,11 @@
 		1C461F4A2AFA7C5100F401C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C461F492AFA7C5100F401C8 /* ContentView.swift */; };
 		1C461F4C2AFA7C5200F401C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C461F4B2AFA7C5200F401C8 /* Assets.xcassets */; };
 		1C461F4F2AFA7C5200F401C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C461F4E2AFA7C5200F401C8 /* Preview Assets.xcassets */; };
-		1C4EAE802AFD026B00E1A79C /* NoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4EAE7F2AFD026B00E1A79C /* NoContentView.swift */; };
+		1C73669A2B4EED54002B66D4 /* LockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7366992B4EED54002B66D4 /* LockedView.swift */; };
+		1C83E0E32B56E98E0068C869 /* CardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C83E0E22B56E98E0068C869 /* CardListCell.swift */; };
+		1C8E62422B5023B60022C220 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E62412B5023B60022C220 /* UIDevice.swift */; };
+		1C8E62452B5025660022C220 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E62442B5025660022C220 /* SettingsView.swift */; };
+		1C8E62472B50264A0022C220 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E62462B50264A0022C220 /* MainView.swift */; };
 		1CE691462B2C736F00EBA200 /* CardsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE691452B2C736F00EBA200 /* CardsList.swift */; };
 		1CE691482B2F28ED00EBA200 /* CreateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE691472B2F28ED00EBA200 /* CreateCardView.swift */; };
 		1CE6914B2B3077C800EBA200 /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE6914A2B3077C800EBA200 /* EditCardView.swift */; };
@@ -66,7 +70,11 @@
 		1C461F492AFA7C5100F401C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1C461F4B2AFA7C5200F401C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C461F4E2AFA7C5200F401C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1C4EAE7F2AFD026B00E1A79C /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
+		1C7366992B4EED54002B66D4 /* LockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedView.swift; sourceTree = "<group>"; };
+		1C83E0E22B56E98E0068C869 /* CardListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListCell.swift; sourceTree = "<group>"; };
+		1C8E62412B5023B60022C220 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		1C8E62442B5025660022C220 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1C8E62462B50264A0022C220 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1CE691452B2C736F00EBA200 /* CardsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsList.swift; sourceTree = "<group>"; };
 		1CE691472B2F28ED00EBA200 /* CreateCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardView.swift; sourceTree = "<group>"; };
 		1CE691492B30747C00EBA200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -117,13 +125,14 @@
 		1C461F462AFA7C5100F401C8 /* FlashcardsApp */ = {
 			isa = PBXGroup;
 			children = (
-				1C461F4B2AFA7C5200F401C8 /* Assets.xcassets */,
-				1C461F472AFA7C5100F401C8 /* FlashcardsAppApp.swift */,
 				1CE691492B30747C00EBA200 /* Info.plist */,
+				1C461F472AFA7C5100F401C8 /* FlashcardsAppApp.swift */,
+				1C461F4B2AFA7C5200F401C8 /* Assets.xcassets */,
+				1C2D03752B3719E800188713 /* Localizable.xcstrings */,
+				1C8E62432B50252C0022C220 /* Extensions */,
 				1CE6914C2B3080CE00EBA200 /* Models */,
 				1C461F4D2AFA7C5200F401C8 /* Preview Content */,
 				1CE691442B2C6C2400EBA200 /* Views */,
-				1C2D03752B3719E800188713 /* Localizable.xcstrings */,
 			);
 			path = FlashcardsApp;
 			sourceTree = "<group>";
@@ -136,14 +145,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1C8E62432B50252C0022C220 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1C8E62412B5023B60022C220 /* UIDevice.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1CE691442B2C6C2400EBA200 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				1C461F492AFA7C5100F401C8 /* ContentView.swift */,
-				1C4EAE7F2AFD026B00E1A79C /* NoContentView.swift */,
 				1CE691452B2C736F00EBA200 /* CardsList.swift */,
 				1CE691472B2F28ED00EBA200 /* CreateCardView.swift */,
 				1CE6914A2B3077C800EBA200 /* EditCardView.swift */,
+				1C7366992B4EED54002B66D4 /* LockedView.swift */,
+				1C8E62442B5025660022C220 /* SettingsView.swift */,
+				1C8E62462B50264A0022C220 /* MainView.swift */,
+				1C83E0E22B56E98E0068C869 /* CardListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,13 +303,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C83E0E32B56E98E0068C869 /* CardListCell.swift in Sources */,
+				1C73669A2B4EED54002B66D4 /* LockedView.swift in Sources */,
 				1C461F4A2AFA7C5100F401C8 /* ContentView.swift in Sources */,
+				1C8E62472B50264A0022C220 /* MainView.swift in Sources */,
 				1CE6914B2B3077C800EBA200 /* EditCardView.swift in Sources */,
 				1CE691482B2F28ED00EBA200 /* CreateCardView.swift in Sources */,
-				1C4EAE802AFD026B00E1A79C /* NoContentView.swift in Sources */,
+				1C8E62452B5025660022C220 /* SettingsView.swift in Sources */,
 				1C461F482AFA7C5100F401C8 /* FlashcardsAppApp.swift in Sources */,
 				1CE691462B2C736F00EBA200 /* CardsList.swift in Sources */,
 				1CE6914E2B3080FE00EBA200 /* Card.swift in Sources */,
+				1C8E62422B5023B60022C220 /* UIDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +473,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlashcardsApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flashcards;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Face ID to lock the app so no one can modify your dictionary";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -481,6 +506,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlashcardsApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flashcards;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Face ID to lock the app so no one can modify your dictionary";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

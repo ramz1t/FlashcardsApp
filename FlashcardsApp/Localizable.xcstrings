@@ -2,14 +2,21 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%lld cards" : {
       "extractionState" : "manual",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "%lld карточек"
           }
         }
@@ -32,6 +39,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить Карточку"
+          }
+        }
+      }
+    },
+    "Add Cards to begin practicing every day" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавьте карточки для занятий каждый день"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete all your words? You can not undo this action" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы точно хотите удалить все ваши слова? Это действие нельзя отменить"
+          }
+        }
+      }
+    },
+    "Are you sure?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены?"
+          }
+        }
+      }
+    },
+    "Clear All Words" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить Все Слова"
           }
         }
       }
@@ -107,7 +154,14 @@
       }
     },
     "Flashcards" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Hide translations" : {
       "localizations" : {
@@ -115,6 +169,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скрыть перевод"
+          }
+        }
+      }
+    },
+    "Locked" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заблокировано"
           }
         }
       }
@@ -130,6 +194,17 @@
         }
       }
     },
+    "No Cards Found" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Карточки Не Найдены"
+          }
+        }
+      }
+    },
     "Original text" : {
       "localizations" : {
         "ru" : {
@@ -140,12 +215,32 @@
         }
       }
     },
+    "Remove Password" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать Пароль"
+          }
+        }
+      }
+    },
     "Save" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
           }
         }
       }
@@ -175,7 +270,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Смахни влево для редактирования "
+            "value" : "Смахните влево для редактирования "
           }
         }
       }
@@ -186,6 +281,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Перевод"
+          }
+        }
+      }
+    },
+    "Unlock" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разблокировать"
+          }
+        }
+      }
+    },
+    "Unlocked" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разблокировано"
+          }
+        }
+      }
+    },
+    "Use Password" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать Пароль"
+          }
+        }
+      }
+    },
+    "Wordlist Is Empty" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список Слов Пуст"
           }
         }
       }
