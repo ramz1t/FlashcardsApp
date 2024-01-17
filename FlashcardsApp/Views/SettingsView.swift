@@ -17,7 +17,7 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationStack {
-            Section {
+            List {
                 Button(requirePassword ? "Remove Password" : "Use Password") {
                     
                 }
@@ -40,6 +40,7 @@ struct SettingsView: View {
                 Button("Close") {
                     dismiss()
                 }
+                .bold()
             }
         }
     }

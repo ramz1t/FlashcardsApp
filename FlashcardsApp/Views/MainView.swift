@@ -12,8 +12,15 @@ struct MainView: View {
     @State private var search = ""
     @State private var searchIsActive = false
     @State private var order = SortDescriptor(\Card.creationDate, order: .reverse)
-    @State private var addCardIsOpen = false
-    @State private var settingsIsOpen = false
+    @State private var activeSheet: MainViewSheet? = nil
+    
+    enum MainViewSheet: String, Identifiable {
+        case settings, addCard
+        
+        var id: String {
+            return self.rawValue
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -26,7 +33,7 @@ struct MainView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .topBarLeading) {
                         Button {
-                            settingsIsOpen = true
+                            activeSheet = .settings
                         } label: {
                             Image(systemName: "gear")
                         }
@@ -34,7 +41,7 @@ struct MainView: View {
                     ToolbarItemGroup(placement: .primaryAction) {
                         sortMenu
                         Button {
-                            addCardIsOpen = true
+                            activeSheet = .addCard
                         } label: {
                             Image(systemName: "plus.rectangle.on.rectangle")
                         }
@@ -44,11 +51,13 @@ struct MainView: View {
                         authorLink
                     }
                 }
-                .sheet(isPresented: $addCardIsOpen) {
-                    CreateCardView()
-                }
-                .sheet(isPresented: $settingsIsOpen) {
-                    SettingsView()
+                .sheet(item: $activeSheet) { sheet in
+                    switch sheet {
+                    case .settings:
+                        SettingsView()
+                    case .addCard:
+                        CreateCardView()
+                    }
                 }
         }
     }

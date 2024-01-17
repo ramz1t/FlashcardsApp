@@ -35,10 +35,8 @@ struct CreateCardView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
+                    Button("Close") {
                         dismiss()
-                    } label: {
-                        Label("Close", systemImage: "xmark.circle")
                     }
                 }
                 ToolbarItem(placement: .primaryAction) {
