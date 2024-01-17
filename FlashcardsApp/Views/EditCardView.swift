@@ -32,6 +32,7 @@ struct EditCardView: View {
                 Button("Done") {
                     dismiss()
                 }
+                .bold()
             }
         }
     }

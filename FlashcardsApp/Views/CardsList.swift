@@ -12,21 +12,21 @@ struct CardsList: View {
     @Environment(\.modelContext) var modelContext
     @AppStorage("showTranslations") private var showingTranslations = false
     @Binding private var searchIsActive: Bool
-    var search = ""
+    var searchQuery = ""
     
     @Query var cards: [Card]
     
     init(sort: SortDescriptor<Card>, search: String, searchIsActive: Binding<Bool>) {
         let clearSearch = search.trimmingCharacters(in: .whitespacesAndNewlines)
-        _cards = Query(filter: #Predicate<Card> {
-            if clearSearch.isEmpty {
-                return true
-            } else {
-                return $0.originalText.localizedStandardContains(clearSearch) || $0.translatedText.localizedStandardContains(clearSearch)
-            }
+        
+        _cards = Query(filter: #Predicate<Card> { card in
+            clearSearch.isEmpty ||
+            card.originalText.localizedStandardContains(clearSearch) ||
+            card.translatedText.localizedStandardContains(clearSearch)
         }, sort: [sort])
+        
         _searchIsActive = searchIsActive
-        self.search = search
+        searchQuery = search
     }
     
     var body: some View {
@@ -52,7 +52,7 @@ struct CardsList: View {
         .overlay {
             if cards.count == 0 {
                 if searchIsActive {
-                    ContentUnavailableView.search(text: search)
+                    ContentUnavailableView.search(text: searchQuery)
                 } else {
                     ContentUnavailableView("Wordlist Is Empty", systemImage: "doc.text.magnifyingglass", description: Text("Add Cards to begin practicing every day"))
                 }
