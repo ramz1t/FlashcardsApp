@@ -194,17 +194,6 @@
         }
       }
     },
-    "No Cards Found" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Карточки Не Найдены"
-          }
-        }
-      }
-    },
     "Original text" : {
       "localizations" : {
         "ru" : {
@@ -215,12 +204,12 @@
         }
       }
     },
-    "Remove Password" : {
+    "Remove Face ID" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Убрать Пароль"
+            "value" : "Убрать Face ID"
           }
         }
       }
@@ -241,6 +230,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Shake To Lock" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрясти Для Блокировки"
           }
         }
       }
@@ -305,12 +304,22 @@
         }
       }
     },
-    "Use Password" : {
+    "Use Face ID" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Использовать Пароль"
+            "value" : "Использовать Face ID"
+          }
+        }
+      }
+    },
+    "Use Face ID to unlock the app and perform permanent actions" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте Face ID для разблокировки приложения и необратимых действий"
           }
         }
       }

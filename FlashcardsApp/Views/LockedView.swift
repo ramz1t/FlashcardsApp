@@ -10,6 +10,7 @@ import UIKit
 
 struct LockedView: View {
     @State private var isLocked = true
+    @AppStorage("shakeToLock") private var shakeToLock = false
     
     var body: some View {
         if isLocked {
@@ -32,9 +33,9 @@ struct LockedView: View {
             .ignoresSafeArea(.all)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
-            .onAppear {
-                UIDevice.authenticate {
-                    isLocked = false
+            .onShake {
+                if shakeToLock {
+                    isLocked = true
                 }
             }
         }

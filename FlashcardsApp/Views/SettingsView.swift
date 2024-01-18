@@ -10,7 +10,8 @@ import SwiftData
 import UIKit
 
 struct SettingsView: View {
-    @AppStorage("requirePassword") var requirePassword: Bool = false
+    @AppStorage("requirePassword") private var requirePassword = false
+    @AppStorage("shakeToLock") private var shakeToLock = false
     @Environment(\.modelContext) var modelContext
     @State private var isPresentingDialog = false
     @Environment(\.dismiss) var dismiss
@@ -18,14 +19,36 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Button(requirePassword ? "Remove Password" : "Use Password") {
-                    
+                Section {
+                    Button {
+                        if !requirePassword {
+                            UIDevice.authenticate {
+                                requirePassword = true
+                            }
+                        } else {
+                            requirePassword = false
+                        }
+                    } label: {
+                        Label(requirePassword ? "Remove Face ID" : "Use Face ID", systemImage: "faceid")
+                            .foregroundStyle(.green)
+                    }
+                    Toggle(isOn: $shakeToLock) {
+                        Label("Shake To Lock", systemImage: "waveform.path")
+                    }
+                } header: {
+                    Text("Settings")
+                } footer: {
+                    Text("Use Face ID to unlock the app and perform permanent actions")
                 }
-                Button("Clear All Words", role: .destructive) {
-                    isPresentingDialog = true
+                Section {
+                    Button(role: .destructive) {
+                        isPresentingDialog = true
+                    } label: {
+                        Label("Clear All Words", systemImage: "trash")
+                            .foregroundColor(.red)
+                    }
                 }
             }
-            .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .confirmationDialog("Are you sure?", isPresented: $isPresentingDialog) {
                 Button("Delete", role: .destructive) {

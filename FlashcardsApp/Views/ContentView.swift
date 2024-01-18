@@ -10,10 +10,14 @@ import SwiftData
 import LocalAuthentication
 
 struct ContentView: View {
+    @AppStorage("requirePassword") private var requirePassword = false
+    
     var body: some View {
         ZStack {
             MainView()
-//            LockedView()
+            if requirePassword {
+                LockedView()
+            }
         }
     }
 }
