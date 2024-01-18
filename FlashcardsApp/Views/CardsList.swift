@@ -12,12 +12,12 @@ struct CardsList: View {
     @Environment(\.modelContext) var modelContext
     @AppStorage("showTranslations") private var showingTranslations = false
     @Binding private var searchIsActive: Bool
-    var searchQuery = ""
+    @Binding private var search: String
     
     @Query var cards: [Card]
     
-    init(sort: SortDescriptor<Card>, search: String, searchIsActive: Binding<Bool>) {
-        let clearSearch = search.trimmingCharacters(in: .whitespacesAndNewlines)
+    init(sort: SortDescriptor<Card>, search: Binding<String>, searchIsActive: Binding<Bool>) {
+        let clearSearch = search.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         _cards = Query(filter: #Predicate<Card> { card in
             clearSearch.isEmpty ||
@@ -26,7 +26,7 @@ struct CardsList: View {
         }, sort: [sort])
         
         _searchIsActive = searchIsActive
-        searchQuery = search
+        _search = search
     }
     
     var body: some View {
@@ -52,7 +52,7 @@ struct CardsList: View {
         .overlay {
             if cards.count == 0 {
                 if searchIsActive {
-                    ContentUnavailableView.search(text: searchQuery)
+                    ContentUnavailableView.search(text: search.trimmingCharacters(in: .whitespaces))
                 } else {
                     ContentUnavailableView("Wordlist Is Empty", systemImage: "doc.text.magnifyingglass", description: Text("Add Cards to begin practicing every day"))
                 }
@@ -68,7 +68,7 @@ struct CardsList: View {
     let container = try! ModelContainer(for: Card.self, configurations: config)
     
     return NavigationStack {
-        CardsList(sort: SortDescriptor(\Card.originalText), search: search, searchIsActive: $active)
+        CardsList(sort: SortDescriptor(\Card.originalText), search: $search, searchIsActive: $active)
             .searchable(text: $search,
                         placement: .navigationBarDrawer(displayMode: .always))
             .modelContainer(container)

@@ -24,7 +24,7 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            CardsList(sort: order, search: search, searchIsActive: $searchIsActive)
+            CardsList(sort: order, search: $search, searchIsActive: $searchIsActive)
                 .navigationTitle("Flashcards")
                 .searchable(text: $search,
                             isPresented: $searchIsActive,
