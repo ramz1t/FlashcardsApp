@@ -12,7 +12,7 @@ struct CardListCell: View {
     let card: Card
     @Binding var showTranslation: Bool
     @State var editMenuOpen = false
-    @Environment(\.modelContext) var modelContext
+    @ObservedObject var viewModel: CardsViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -25,7 +25,7 @@ struct CardListCell: View {
         }
         .swipeActions {
             Button(role: .destructive) {
-                modelContext.delete(card)
+                viewModel.deleteCard(card)
             } label: {
                 Label("Delete", systemImage: "trash")
             }
@@ -46,6 +46,7 @@ struct CardListCell: View {
 #Preview {
     let card = Card()
     @State var showingTranslation = false
+    @StateObject var viewModel = CardsViewModel()
     
-    return CardListCell(card: card, showTranslation: $showingTranslation)
+    return CardListCell(card: card, showTranslation: $showingTranslation, viewModel: viewModel)
 }

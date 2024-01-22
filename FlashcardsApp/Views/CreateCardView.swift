@@ -14,7 +14,7 @@ struct CreateCardView: View {
         originalText.trimmingCharacters(in: .whitespaces) != "" && 
         translatedText.trimmingCharacters(in: .whitespaces) != ""
     }
-    @Environment(\.modelContext) var modelContext
+    @ObservedObject var viewModel: CardsViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -41,11 +41,8 @@ struct CreateCardView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
-                        let card = Card(originalText: originalText
-                            .trimmingCharacters(in: .whitespaces),
-                                        translatedText: translatedText
-                            .trimmingCharacters(in: .whitespaces))
-                        modelContext.insert(card)
+                        viewModel.addCard(originalText: originalText, 
+                                          translatedText: translatedText)
                         dismiss()
                     }
                     .bold()
@@ -57,5 +54,6 @@ struct CreateCardView: View {
 }
 
 #Preview {
-    CreateCardView()
+    @ObservedObject var viewModel = CardsViewModel()
+    return CreateCardView(viewModel: viewModel)
 }

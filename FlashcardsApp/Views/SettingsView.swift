@@ -34,7 +34,9 @@ struct SettingsView: View {
                     }
                     Toggle(isOn: $shakeToLock) {
                         Label("Shake To Lock", systemImage: "waveform.path")
+                            .foregroundColor(requirePassword ? .accent : .gray)
                     }
+                    .disabled(!requirePassword)
                 } header: {
                     Text("Settings")
                 } footer: {
@@ -47,13 +49,17 @@ struct SettingsView: View {
                         Label("Clear All Words", systemImage: "trash")
                             .foregroundColor(.red)
                     }
+                } footer: {
+                    Text("Removes all words from your list from all devices")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .confirmationDialog("Are you sure?", isPresented: $isPresentingDialog) {
                 Button("Delete", role: .destructive) {
-                    UIDevice.authenticate {
-                        try! modelContext.delete(model: Card.self)
+                    if requirePassword {
+                        UIDevice.authenticate {
+                            try! modelContext.delete(model: Card.self)
+                        }
                     }
                 }
             } message: {

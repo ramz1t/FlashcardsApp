@@ -9,10 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct MainView: View {
-    @State private var search = ""
-    @State private var searchIsActive = false
-    @State private var order = SortDescriptor(\Card.creationDate, order: .reverse)
     @State private var activeSheet: MainViewSheet? = nil
+    @Environment(\.modelContext) var modelContext
+    @StateObject private var viewModel = CardsViewModel()
     
     enum MainViewSheet: String, Identifiable {
         case settings, addCard
@@ -24,10 +23,10 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            CardsList(sort: order, search: $search, searchIsActive: $searchIsActive)
+            CardsList(viewModel: viewModel)
                 .navigationTitle("Flashcards")
-                .searchable(text: $search,
-                            isPresented: $searchIsActive,
+                .searchable(text: $viewModel.searchQuery,
+                            isPresented: $viewModel.searchIsActive,
                             placement: .navigationBarDrawer(displayMode: .always)
                 )
                 .toolbar {
@@ -56,15 +55,19 @@ struct MainView: View {
                     case .settings:
                         SettingsView()
                     case .addCard:
-                        CreateCardView()
+                        CreateCardView(viewModel: viewModel)
                     }
+                }
+                .onAppear {
+                    viewModel.modelContext = modelContext
+                    viewModel.fetchCards()
                 }
         }
     }
     
     var sortMenu: some View {
         Menu("Sort", systemImage: "arrow.up.arrow.down") {
-            Picker("Sort", selection: $order) {
+            Picker("Sort", selection: $viewModel.sort) {
                 Label("Original text", systemImage: "doc.text")
                     .tag(SortDescriptor(\Card.originalText))
                 Label("Translated text", systemImage: "text.book.closed")

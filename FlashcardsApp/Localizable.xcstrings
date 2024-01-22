@@ -214,6 +214,9 @@
         }
       }
     },
+    "Removes all words from your list from all devices" : {
+
+    },
     "Save" : {
       "localizations" : {
         "ru" : {

@@ -25,7 +25,6 @@ extension UIDevice {
                 }
             }
         } else {
-            print("no biometrics")
             onFailure()
         }
     }
