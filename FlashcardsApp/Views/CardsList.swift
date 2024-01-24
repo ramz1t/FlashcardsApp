@@ -25,7 +25,7 @@ struct CardsList: View {
                     }
                     ForEach(viewModel.cards) { card in
                         CardListCell(card: card,
-                                     showTranslation: $showingTranslations,
+                                     showTranslation: showingTranslations,
                                      viewModel: viewModel)
                     }
                 } header: {

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Card {
+class Card: Hashable {
     
     var originalText: String
     var translatedText: String

@@ -29,6 +29,8 @@ struct CreateCardView: View {
                     TextField("", text: $translatedText)
                 } header: {
                     Label("Translated text", systemImage: "a.book.closed.ja")
+                } footer: {
+                    Text("**Original text** is a word in your native language\n**Translated text** is a word in a language you learn")
                 }
             }
             .navigationTitle("Create New Card")

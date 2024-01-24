@@ -10,7 +10,7 @@ import SwiftData
 
 struct CardListCell: View {
     let card: Card
-    @Binding var showTranslation: Bool
+    var showTranslation: Bool
     @State var editMenuOpen = false
     @ObservedObject var viewModel: CardsViewModel
     
@@ -48,5 +48,5 @@ struct CardListCell: View {
     @State var showingTranslation = false
     @StateObject var viewModel = CardsViewModel()
     
-    return CardListCell(card: card, showTranslation: $showingTranslation, viewModel: viewModel)
+    return CardListCell(card: card, showTranslation: showingTranslation, viewModel: viewModel)
 }

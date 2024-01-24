@@ -11,6 +11,9 @@
         }
       }
     },
+    "**Original text** is a word in your native language\n**Translated text** is a word in a language you learn" : {
+
+    },
     "%lld cards" : {
       "extractionState" : "manual",
       "localizations" : {
